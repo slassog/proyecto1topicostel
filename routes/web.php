@@ -14,3 +14,21 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('database-test', function(){
+	if( DB::connection()->getDatabaseName())
+	{
+		echo 'Connected succesfully to database' , DB::connection()->getDatabaseName();
+	}
+});
+
+Route::get('contacts', function(){
+	$contacts = App\Contact::all();
+
+	echo '<pre>';
+	print_r($contacts);
+	echo '</pre>';
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
