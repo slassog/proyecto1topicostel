@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('contacts', 'ContactlistController');
+//Route::group(['middleware' => ['web']], function(){
+//	Route::resource("contacts", "ContactlistController");
+//});
+
 Route::get('database-test', function(){
 	if( DB::connection()->getDatabaseName())
 	{
@@ -22,13 +27,14 @@ Route::get('database-test', function(){
 	}
 });
 
-Route::get('contacts', function(){
+/*Route::get('contacts', function(){
 	$contacts = App\Contact::all();
 
 	echo '<pre>';
 	print_r($contacts);
 	echo '</pre>';
-});
+});*/
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
