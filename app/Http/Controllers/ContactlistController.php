@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\http\Controllers\Controller;
-use App\contact;
+use App\Contact;
 
 class ContactlistController extends Controller
 {

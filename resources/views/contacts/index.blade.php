@@ -21,9 +21,9 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
-            <th>Title</th>
-            <th>Description</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Nota</th>
             <th width="280px">Action</th>
         </tr>
     @foreach ($contacts as $key => $contact)
@@ -43,6 +43,6 @@
     @endforeach
     </table>
 
-    {!! $items->render() !!}
+    {!! $contacts->render() !!}
 
 @endsection

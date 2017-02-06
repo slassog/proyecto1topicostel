@@ -1,14 +1,14 @@
 @extends('layouts.default')
-
+ 
 @section('content')
 
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Añadir Contacto</h2>
+                <h2>Editar Contacto</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('contacts.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('contact.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
         </div>
     @endif
 
-    {!! Form::open(array('route' => 'contacts.store','method'=>'POST')) !!}
+    {!! Form::model($item, ['method' => 'PATCH','route' => ['contact.update', $item->id]]) !!}
     <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12">

@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Editar Contacto</h2>
+                <h2>Editar contacto</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('contact.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('contacts.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
         </div>
     @endif
 
-    {!! Form::model($item, ['method' => 'PATCH','route' => ['contact.update', $item->id]]) !!}
+    {!! Form::model($contact, ['method' => 'PATCH','route' => ['contacts.update', $contact->id]]) !!}
     <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -36,7 +36,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Número de Telefono:</strong>
+                <strong>Número:</strong>
                 {!! Form::textarea('Número', null, array('placeholder' => 'Número','class' => 'form-control','style'=>'height:100px')) !!}
             </div>
         </div>
