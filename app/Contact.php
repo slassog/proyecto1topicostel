@@ -7,3 +7,4 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     public $fillable = ['name', 'number', 'note'];
+}

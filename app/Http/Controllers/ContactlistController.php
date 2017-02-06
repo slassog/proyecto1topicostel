@@ -16,8 +16,8 @@ class ContactlistController extends Controller
      */
     public function index(Request $request)
     {
-        $items = Item::orderBy('ID','NAME')->paginate(5);
-        return view('contact.index',compact('items'))
+        $contacts = contact::orderBy('ID','NAME')->paginate(5);
+        return view('contacts.index',compact('contacts'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -28,7 +28,7 @@ class ContactlistController extends Controller
      */
     public function create()
     {
-        return view('contact.create');
+        return view('contacts.create');
     }
 
     /**
@@ -41,11 +41,12 @@ class ContactlistController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'number' => 'required',
+            'phone' => 'required',
+            'note' => 'required',
         ]);
 
-        Item::create($request->all());
-        return redirect()->route('contact.index')
+        contact::create($request->all());
+        return redirect()->route('contacts.index')
                         ->with('success' , 'Contacto creado correctamente');
     }
 
@@ -57,8 +58,8 @@ class ContactlistController extends Controller
      */
     public function show($id)
     {
-        $item = Item::find($id);
-        return view('contact.show',compact('item'));
+        $contact = contact::find($id);
+        return view('contacts.show',compact('contacts'));
     }
 
     /**
@@ -69,8 +70,8 @@ class ContactlistController extends Controller
      */
     public function edit($id)
     {
-        $item = Item::find($id);
-        return view('contact.edit',compact('item'));
+        $contact = contact::find($id);
+        return view('contacts.edit',compact('contacts'));
     }
 
     /**
@@ -84,11 +85,12 @@ class ContactlistController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'number' => 'required',
+            'phone' => 'required',
+            'note' => 'required',
         ]);
 
-        Item::find($id)->update($request->all());
-        return redirect()->route('contact.index')
+        contact::find($id)->update($request->all());
+        return redirect()->route('contacts.index')
                         ->with('success','Contacto actualizado correctamente');
     }
 
@@ -100,8 +102,8 @@ class ContactlistController extends Controller
      */
     public function destroy($id)
     {
-        Item::find($id)->delete();
-        return redirect()->route('contact.index')
+        contact::find($id)->delete();
+        return redirect()->route('contacts.index')
                         ->with('success','Contacto borrado correctamente');
     }
 }

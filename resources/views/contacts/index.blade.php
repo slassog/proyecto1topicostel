@@ -1,29 +1,48 @@
-@extends('layouts.master')
-
-@section('header')
-	<h2>Lista de Contactos</h2>
-@stop
-
+@extends('layouts.default')
+ 
 @section('content')
-	<a href="contact/create" class="btn btn-primary">Agregar</a>
-	<table class="table table-bordered table-responsive" style="margin-bottom: 10px;">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Phone</th>
-			<th>Note</th>
-		</tr>
-	</thead>
-	<tbody>
-	@foreach($contacts as $contact)
-		<tr>
-			<td>[{ $contact -> NAME }]</td>
-			<td>[{ $contact -> PHONE }]</td>
-			<td>[{ $contact -> NOTE }]</td>
-			<td>
-				<a href="" class="btn btn-success">Editar</a>
-				<a href="" class="btn btn-danger">Borrar</a>
-			</td>
-		</tr>
-	</table>
-@stop
+
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>Contactos</h2>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{ route('contacts.create') }}"> Crear un nuevo contacto</a>
+            </div>
+        </div>
+    </div>
+
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+
+    <table class="table table-bordered">
+        <tr>
+            <th>No</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th width="280px">Action</th>
+        </tr>
+    @foreach ($contacts as $key => $contact)
+    <tr>
+        <td>{{ ++$i }}</td>
+        <td>{{ $contact->NAME }}</td>
+        <td>{{ $contact->PHONE }}</td>
+        <td>{{ $contact->NOTE }}</td>
+        <td>
+            <a class="btn btn-info" href="{{ route('contacts.show',$contact->id) }}">Mostrar</a>
+            <a class="btn btn-primary" href="{{ route('contacts.edit',$contact->id) }}">Editar</a>
+            {!! Form::open(['method' => 'DELETE','route' => ['contacts.destroy', $contact->id],'style'=>'display:inline']) !!}
+            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+            {!! Form::close() !!}
+        </td>
+    </tr>
+    @endforeach
+    </table>
+
+    {!! $items->render() !!}
+
+@endsection
